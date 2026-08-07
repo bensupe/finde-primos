@@ -13,7 +13,7 @@
 
   const els = {
     days: $("#days"),
-    hours: $("#hours"),
+    totalHours: $("#total-hours"),
     minutes: $("#minutes"),
     seconds: $("#seconds"),
     sentence: $("#countdown-sentence"),
@@ -129,45 +129,46 @@
   function setCountdownValues(ms) {
     const totalSeconds = Math.max(0, Math.floor(ms / 1000));
     const days = Math.floor(totalSeconds / 86400);
-    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const totalHours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
 
-    // Los días nunca llevan ceros a la izquierda.
     els.days.textContent = String(days);
-    els.hours.textContent = pad2(hours);
+    els.totalHours.textContent = String(totalHours);
     els.minutes.textContent = pad2(minutes);
     els.seconds.textContent = pad2(seconds);
 
-    return { days, hours, minutes, seconds };
+    return { totalSeconds, days, totalHours, minutes, seconds };
   }
 
   function beforeEvent(now) {
     document.body.classList.remove("is-live", "is-complete");
     const remaining = start - now;
-    const t = setCountdownValues(remaining);
+    const total = setCountdownValues(remaining);
+
+    const hoursRemainder = Math.floor((total.totalSeconds % 86400) / 3600);
 
     els.sentence.textContent =
-      `Faltan ${t.days} ${plural(t.days, "día", "días")}, ` +
-      `${t.hours} ${plural(t.hours, "hora", "horas")}, ` +
-      `${t.minutes} ${plural(t.minutes, "minuto", "minutos")} y ` +
-      `${t.seconds} ${plural(t.seconds, "segundo", "segundos")} para el Finde de Primos.`;
+      `Faltan ${total.days} ${plural(total.days, "día", "días")}, ` +
+      `${hoursRemainder} ${plural(hoursRemainder, "hora", "horas")}, ` +
+      `${total.minutes} ${plural(total.minutes, "minuto", "minutos")} y ` +
+      `${total.seconds} ${plural(total.seconds, "segundo", "segundos")} para el Finde de Primos.`;
 
     if (remaining <= 60 * 60 * 1000) {
       els.topStatus.textContent = "CONEXIÓN INMINENTE";
-      els.dynamicStatus.textContent = "T-60M // CASI ONLINE";
-      els.dynamicSubstatus.textContent = "Últimas comprobaciones. El desayuno está a punto de compilar.";
+      els.dynamicStatus.textContent = "Casi todo listo";
+      els.dynamicSubstatus.textContent = "Últimas comprobaciones. El desayuno está a punto de arrancar.";
     } else if (remaining <= 24 * 60 * 60 * 1000) {
-      els.topStatus.textContent = "T-24H";
-      els.dynamicStatus.textContent = "FINAL BUILD DEPLOYED";
-      els.dynamicSubstatus.textContent = "Preparad las consolas. El modo búnker está en espera.";
+      els.topStatus.textContent = "FALTA MUY POCO";
+      els.dynamicStatus.textContent = "Recta final";
+      els.dynamicSubstatus.textContent = "Preparad las consolas. El modo búnker está a punto de activarse.";
     } else if (remaining <= 7 * 24 * 60 * 60 * 1000) {
       els.topStatus.textContent = "ÚLTIMA SEMANA";
-      els.dynamicStatus.textContent = "SINCRONIZACIÓN FINAL";
+      els.dynamicStatus.textContent = "Sincronizando primos…";
       els.dynamicSubstatus.textContent = "Provisionando comida, piscina y entorno multijugador.";
     } else {
       els.topStatus.textContent = "EVENTO PROGRAMADO";
-      els.dynamicStatus.textContent = "SINCRONIZANDO PRIMOS…";
+      els.dynamicStatus.textContent = "Sincronizando primos…";
       els.dynamicSubstatus.textContent = "Preparando entorno multijugador.";
     }
   }
@@ -179,16 +180,18 @@
     const elapsed = now - start;
     const total = end - start;
     const eventProgress = Math.min(100, Math.max(0, (elapsed / total) * 100));
-    const t = setCountdownValues(end - now);
+    const remaining = setCountdownValues(end - now);
+
+    const hoursRemainder = Math.floor((remaining.totalSeconds % 86400) / 3600);
 
     els.sentence.textContent =
       `FINDE DE PRIMOS ${FINDE_CONFIG.edition} // ONLINE — quedan ` +
-      `${t.days} ${plural(t.days, "día", "días")}, ` +
-      `${t.hours} ${plural(t.hours, "hora", "horas")} y ` +
-      `${t.minutes} ${plural(t.minutes, "minuto", "minutos")} de modo búnker.`;
+      `${remaining.days} ${plural(remaining.days, "día", "días")}, ` +
+      `${hoursRemainder} ${plural(hoursRemainder, "hora", "horas")} y ` +
+      `${remaining.minutes} ${plural(remaining.minutes, "minuto", "minutos")} de modo búnker.`;
 
     els.topStatus.textContent = "MODO BÚNKER // ONLINE";
-    els.dynamicStatus.textContent = "TODOS LOS SISTEMAS OPERATIVOS";
+    els.dynamicStatus.textContent = "Finde en curso";
     els.dynamicSubstatus.textContent =
       `Sesión activa al ${eventProgress.toFixed(1)}%. No se recomienda salir de la casa.`;
   }
@@ -202,8 +205,8 @@
       `FINDE DE PRIMOS ${FINDE_CONFIG.edition} // COMPLETED ✓`;
 
     els.topStatus.textContent = "SESSION COMPLETED";
-    els.dynamicStatus.textContent = "MEMORIES SAVED SUCCESSFULLY";
-    els.dynamicSubstatus.textContent = "NEXT SESSION: pendiente de nueva fecha.";
+    els.dynamicStatus.textContent = "Finde completado";
+    els.dynamicSubstatus.textContent = "Pendiente de nueva fecha para la próxima edición.";
   }
 
   function updateProgress(now) {
@@ -228,7 +231,7 @@
       hour12: false
     });
 
-    els.footerClock.textContent = `LOCAL TIME ${time}`;
+    els.footerClock.textContent = `Hora local ${time}`;
   }
 
   function tick() {

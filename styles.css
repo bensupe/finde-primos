@@ -1,18 +1,18 @@
-/* FINDE DE PRIMOS — v4
+/* FINDE DE PRIMOS — v5
    ----------------------------------------------------------
-   - La foto del salón vuelve a ser el fondo general.
-   - Paneles algo más transparentes.
-   - Cuenta atrás más grande.
-   - Nuevo cerdo integrado a la derecha del contador.
-   - Sin fechas concretas: toda la edición vive en config.js.
+   - Contador reestructurado:
+     1) días en grande y con más personalidad
+     2) horas totales en estética más técnica / terminal
+   - Menos jerga informática en la interfaz.
+   - Se mantiene config.js como única fuente anual.
 */
 
 :root {
   --bg: #07090a;
-  --panel: rgba(8, 13, 14, 0.66);
-  --panel-soft: rgba(8, 13, 14, 0.57);
+  --panel: rgba(8, 13, 14, 0.62);
+  --panel-soft: rgba(8, 13, 14, 0.54);
   --line: rgba(195, 232, 211, 0.18);
-  --line-strong: rgba(195, 232, 211, 0.34);
+  --line-strong: rgba(195, 232, 211, 0.36);
   --text: #f4f5f1;
   --muted: #a7b0aa;
   --accent: #a7e4b9;
@@ -45,8 +45,8 @@ body {
   inset: 0;
   z-index: -3;
   background:
-    linear-gradient(180deg, rgba(3, 5, 5, 0.36), rgba(3, 5, 5, 0.60)),
-    url("assets/salon.jpg?v=4") center center / cover no-repeat;
+    linear-gradient(180deg, rgba(3, 5, 5, 0.34), rgba(3, 5, 5, 0.58)),
+    url("assets/salon.jpg?v=5") center center / cover no-repeat;
   transform: scale(1.012);
   filter: saturate(0.82) contrast(1.04);
 }
@@ -56,12 +56,12 @@ body {
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  opacity: 0.20;
+  opacity: 0.16;
   background-image:
-    linear-gradient(rgba(190, 226, 207, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(190, 226, 207, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(190, 226, 207, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(190, 226, 207, 0.035) 1px, transparent 1px);
   background-size: 42px 42px;
-  mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, .70) 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, .68) 72%, transparent 100%);
 }
 
 .shell {
@@ -93,15 +93,6 @@ footer {
   gap: 9px;
 }
 
-.brand-mark {
-  width: 11px;
-  height: 11px;
-  border: 2px solid var(--accent);
-  box-shadow:
-    inset 0 0 0 2px rgba(167, 228, 185, .15),
-    0 0 16px rgba(167, 228, 185, .3);
-}
-
 .status-dot {
   width: 8px;
   height: 8px;
@@ -111,14 +102,10 @@ footer {
   animation: pulse 2.2s ease-in-out infinite;
 }
 
-.muted {
-  color: var(--muted);
-}
-
 .panel {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--panel), rgba(7, 11, 12, 0.59));
+  background: linear-gradient(135deg, var(--panel), rgba(7, 11, 12, 0.56));
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -145,7 +132,7 @@ footer {
 }
 
 .eyebrow,
-.card-code {
+.card-title {
   color: var(--accent);
   font-family: var(--mono);
   font-size: 12px;
@@ -163,7 +150,7 @@ h1 {
 
 .hero-main {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(210px, 32%);
+  grid-template-columns: minmax(0, 1fr) minmax(210px, 31%);
   align-items: center;
   gap: clamp(20px, 3vw, 42px);
 }
@@ -172,73 +159,82 @@ h1 {
   min-width: 0;
 }
 
-.countdown {
+.days-block {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.days-value {
+  color: var(--accent-strong);
+  font-family: var(--sans);
+  font-size: clamp(96px, 13vw, 176px);
+  line-height: .82;
+  font-weight: 820;
+  letter-spacing: -.08em;
+  text-shadow: 0 0 36px rgba(167, 228, 185, .12);
+}
+
+.days-label {
+  margin-top: 12px;
+  color: #dfe9e2;
+  font-family: var(--sans);
+  font-size: clamp(18px, 2.1vw, 24px);
+  font-weight: 700;
+  letter-spacing: .22em;
+}
+
+.hours-block {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 18px 15px;
+  border: 1px solid rgba(167, 228, 185, .16);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(6, 10, 10, .34), rgba(6, 10, 10, .18));
+  box-shadow: inset 0 0 0 1px rgba(167, 228, 185, .03);
+}
+
+.hours-value-line {
   display: flex;
   align-items: flex-end;
-  gap: clamp(16px, 2.5vw, 34px);
-}
-
-.time-unit {
-  display: flex;
-  flex-direction: column;
-}
-
-.main-unit {
-  min-width: clamp(155px, 19vw, 260px);
-}
-
-.time-value {
+  gap: 12px;
+  color: #baf9c7;
   font-family: var(--mono);
   font-variant-numeric: tabular-nums;
-  font-size: clamp(62px, 10vw, 132px);
-  line-height: .84;
-  letter-spacing: -.075em;
-  text-shadow: 0 0 36px rgba(167, 228, 185, .09);
+  text-shadow: 0 0 18px rgba(122, 255, 150, .18);
 }
 
-.main-unit .time-value {
-  color: var(--accent-strong);
+.hours-value {
+  font-size: clamp(38px, 5.4vw, 76px);
+  line-height: .86;
+  letter-spacing: -.055em;
 }
 
-.small-units .time-value {
-  font-size: clamp(42px, 5.8vw, 76px);
+.hours-colon {
+  color: rgba(186, 249, 199, .70);
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: .9;
+  padding-bottom: 5px;
 }
 
-.time-label {
-  margin-top: 12px;
-  color: var(--muted);
+.hours-label-line {
+  display: grid;
+  grid-template-columns: 1.9fr 1fr 1fr;
+  gap: 12px;
+  color: rgba(186, 249, 199, .72);
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .14em;
-}
-
-.time-separator {
-  color: var(--line-strong);
-  font-family: var(--mono);
-  font-size: clamp(44px, 7vw, 88px);
-  line-height: .75;
-  padding-bottom: 18px;
-}
-
-.small-units {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  gap: clamp(10px, 1.55vw, 21px);
-}
-
-.colon {
-  color: var(--line-strong);
-  font-family: var(--mono);
-  font-size: clamp(28px, 4vw, 50px);
-  padding-bottom: 20px;
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
 }
 
 .countdown-sentence {
-  margin: 34px 0 0;
-  max-width: 820px;
+  margin: 30px 0 0;
+  max-width: 780px;
   color: #e5e8e4;
-  font-size: clamp(18px, 2.1vw, 24px);
+  font-size: clamp(18px, 2vw, 24px);
   line-height: 1.48;
   font-weight: 450;
 }
@@ -275,7 +271,7 @@ h1 {
 
 .progress-heading strong {
   color: var(--accent);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .progress-track {
@@ -314,16 +310,17 @@ h1 {
 .info-card {
   min-height: 150px;
   padding: 23px;
-  background: linear-gradient(135deg, rgba(8, 13, 14, .56), rgba(7, 11, 12, .48));
+  background: linear-gradient(135deg, rgba(8, 13, 14, .52), rgba(7, 11, 12, .44));
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
 .info-card h2 {
   margin: 18px 0 8px;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: clamp(16px, 1.8vw, 22px);
   letter-spacing: -.02em;
+  font-weight: 780;
 }
 
 .info-card p {
@@ -341,7 +338,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 14px;
-  background: linear-gradient(135deg, rgba(8, 13, 14, .52), rgba(7, 11, 12, .44));
+  background: linear-gradient(135deg, rgba(8, 13, 14, .48), rgba(7, 11, 12, .40));
 }
 
 .module {
@@ -383,9 +380,14 @@ body.is-live .status-dot {
   box-shadow: 0 0 16px rgba(255, 240, 181, .9);
 }
 
-body.is-live .main-unit .time-value,
+body.is-live .days-value,
 body.is-live .status-card h2 {
   color: #fff0b5;
+}
+
+body.is-live .hours-value-line,
+body.is-live .hours-label-line {
+  color: #d8ffc0;
 }
 
 body.is-complete .status-dot {
@@ -394,7 +396,7 @@ body.is-complete .status-dot {
   box-shadow: none;
 }
 
-body.is-complete .main-unit .time-value {
+body.is-complete .days-value {
   color: #d6d9d5;
 }
 
@@ -416,20 +418,12 @@ body.is-complete .main-unit .time-value {
   .pig-visual {
     width: 235px;
   }
-
-  .countdown {
-    gap: 14px;
-  }
 }
 
 @media (max-width: 820px) {
   .shell {
     width: min(100% - 24px, 720px);
     padding-top: 18px;
-  }
-
-  .brand .muted {
-    display: none;
   }
 
   .hero {
@@ -445,24 +439,6 @@ body.is-complete .main-unit .time-value {
     width: min(68vw, 310px);
     justify-self: center;
     margin-top: -10px;
-  }
-
-  .countdown {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .time-separator {
-    display: none;
-  }
-
-  .small-units {
-    justify-content: flex-start;
-  }
-
-  .main-unit {
-    min-width: 0;
   }
 
   .info-grid {
@@ -494,20 +470,38 @@ body.is-complete .main-unit .time-value {
   }
 
   h1 {
-    margin-bottom: 26px;
+    margin-bottom: 24px;
   }
 
-  .small-units {
-    gap: 10px;
+  .days-value {
+    font-size: clamp(84px, 24vw, 132px);
   }
 
-  .small-units .time-value {
-    font-size: clamp(34px, 13vw, 56px);
+  .days-label {
+    font-size: 16px;
   }
 
-  .colon {
-    font-size: 24px;
-    padding-bottom: 17px;
+  .hours-block {
+    width: 100%;
+    padding: 14px 14px 13px;
+  }
+
+  .hours-value-line {
+    gap: 8px;
+  }
+
+  .hours-value {
+    font-size: clamp(28px, 10.5vw, 46px);
+  }
+
+  .hours-colon {
+    font-size: 22px;
+    padding-bottom: 3px;
+  }
+
+  .hours-label-line {
+    font-size: 10px;
+    gap: 8px;
   }
 
   .countdown-sentence {

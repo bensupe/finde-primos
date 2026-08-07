@@ -7,8 +7,8 @@
   <meta name="description" content="Cuenta atrás oficial para el Finde de Primos.">
   <title>Finde de Primos</title>
 
-  <link rel="icon" href="assets/favicon.svg?v=4" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="icon" href="assets/favicon.svg?v=5" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 
 <body>
@@ -18,9 +18,7 @@
   <main class="shell">
     <header class="topbar">
       <div class="brand">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>COUSINS WEEKEND</span>
-        <span class="muted">// BUILD <span data-edition></span></span>
+        <span>FINDE DE PRIMOS <span data-edition></span></span>
       </div>
 
       <div class="system-status">
@@ -36,29 +34,23 @@
 
         <div class="hero-main">
           <div class="countdown-area">
-            <div class="countdown" aria-label="Cuenta atrás para el Finde de Primos">
-              <div class="time-unit main-unit">
-                <span id="days" class="time-value">--</span>
-                <span class="time-label">DÍAS</span>
+            <div class="days-block" aria-label="Días restantes">
+              <span id="days" class="days-value">--</span>
+              <span class="days-label">DÍAS</span>
+            </div>
+
+            <div class="hours-block" aria-label="Cuenta atrás en horas totales">
+              <div class="hours-value-line">
+                <span id="total-hours" class="hours-value">----</span>
+                <span class="hours-colon">:</span>
+                <span id="minutes" class="hours-value">--</span>
+                <span class="hours-colon">:</span>
+                <span id="seconds" class="hours-value">--</span>
               </div>
-
-              <div class="time-separator" aria-hidden="true">/</div>
-
-              <div class="small-units">
-                <div class="time-unit">
-                  <span id="hours" class="time-value">--</span>
-                  <span class="time-label">HORAS</span>
-                </div>
-                <span class="colon" aria-hidden="true">:</span>
-                <div class="time-unit">
-                  <span id="minutes" class="time-value">--</span>
-                  <span class="time-label">MIN</span>
-                </div>
-                <span class="colon" aria-hidden="true">:</span>
-                <div class="time-unit">
-                  <span id="seconds" class="time-value">--</span>
-                  <span class="time-label">SEG</span>
-                </div>
+              <div class="hours-label-line">
+                <span>HORAS</span>
+                <span>MIN</span>
+                <span>SEG</span>
               </div>
             </div>
 
@@ -68,7 +60,7 @@
           </div>
 
           <div class="pig-visual" aria-label="Cerdo con consola, piscina y patatas">
-            <img src="assets/cerdo-consola.png?v=4" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
+            <img src="assets/cerdo-consola.png?v=5" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
           </div>
         </div>
 
@@ -100,19 +92,19 @@
 
     <section class="info-grid">
       <article class="panel info-card">
-        <span class="card-code">CALENDAR.NODE</span>
+        <span class="card-title">FECHA</span>
         <h2 id="event-date-range">CARGANDO…</h2>
         <p id="event-schedule">Consultando configuración.</p>
       </article>
 
       <article class="panel info-card">
-        <span class="card-code">BUNKER.MODE</span>
+        <span class="card-title">MODO BÚNKER</span>
         <h2>ACTIVACIÓN PENDIENTE</h2>
         <p>Probabilidad estimada de salir de la casa: 0.03%</p>
       </article>
 
       <article class="panel info-card status-card">
-        <span class="card-code">SYSTEM.STATUS</span>
+        <span class="card-title">ESTADO</span>
         <h2 id="dynamic-status">SINCRONIZANDO PRIMOS…</h2>
         <p id="dynamic-substatus">Preparando entorno multijugador.</p>
       </article>
@@ -145,16 +137,12 @@
     </section>
 
     <footer>
-      <span>BEN_SUPE // FAMILY NETWORK</span>
-      <span id="footer-clock">LOCAL TIME --:--:--</span>
+      <span>Finde de Primos</span>
+      <span id="footer-clock">Hora local --:--:--</span>
     </footer>
   </main>
 
-  <!--
-    El parámetro ?v=4 evita que GitHub Pages / navegador reutilicen
-    JavaScript antiguo después de una actualización.
-  -->
-  <script src="config.js?v=4"></script>
-  <script src="app.js?v=4"></script>
+  <script src="config.js?v=5"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
