@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0a0d0f">
   <meta name="description" content="Cuenta atrás oficial para el Finde de Primos.">
-  <title>Finde de Primos // 2026</title>
+  <title>Finde de Primos</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -19,11 +19,11 @@
       <div class="brand">
         <span class="brand-mark" aria-hidden="true"></span>
         <span>COUSINS WEEKEND</span>
-        <span class="muted">// BUILD <span data-edition>2026</span></span>
+        <span class="muted">// BUILD <span data-edition></span></span>
       </div>
       <div class="system-status">
         <span class="status-dot"></span>
-        <span id="top-status">EVENTO PROGRAMADO</span>
+        <span id="top-status">INICIALIZANDO…</span>
       </div>
     </header>
 
@@ -33,7 +33,7 @@
 
       <div class="countdown" aria-label="Cuenta atrás para el Finde de Primos">
         <div class="time-unit main-unit">
-          <span id="days" class="time-value">000</span>
+          <span id="days" class="time-value">--</span>
           <span class="time-label">DÍAS</span>
         </div>
 
@@ -41,31 +41,32 @@
 
         <div class="small-units">
           <div class="time-unit">
-            <span id="hours" class="time-value">00</span>
+            <span id="hours" class="time-value">--</span>
             <span class="time-label">HORAS</span>
           </div>
           <span class="colon" aria-hidden="true">:</span>
           <div class="time-unit">
-            <span id="minutes" class="time-value">00</span>
+            <span id="minutes" class="time-value">--</span>
             <span class="time-label">MIN</span>
           </div>
           <span class="colon" aria-hidden="true">:</span>
           <div class="time-unit">
-            <span id="seconds" class="time-value">00</span>
+            <span id="seconds" class="time-value">--</span>
             <span class="time-label">SEG</span>
           </div>
         </div>
       </div>
 
       <p id="countdown-sentence" class="countdown-sentence" aria-live="polite">
-        Calculando tiempo restante…
+        Cargando datos de la próxima sesión…
       </p>
 
       <div class="progress-block">
         <div class="progress-heading">
           <span>PROGRESO HACIA EL SIGUIENTE FINDE</span>
-          <strong id="progress-label">0.0%</strong>
+          <strong id="progress-label">--%</strong>
         </div>
+
         <div
           class="progress-track"
           role="progressbar"
@@ -77,38 +78,52 @@
           <div id="progress-fill" class="progress-fill"></div>
           <span class="progress-glow"></span>
         </div>
+
         <div class="progress-meta">
-          <span id="progress-origin">CICLO INICIADO</span>
-          <span id="progress-destination">13 NOV 2026 // 10:00</span>
+          <span id="progress-origin">FIN EDICIÓN ANTERIOR</span>
+          <span id="progress-destination">PRÓXIMA SESIÓN</span>
         </div>
       </div>
     </section>
 
-    <section class="info-grid">
-      <article class="panel info-card">
-        <span class="card-code">CALENDAR.NODE</span>
-        <h2>13—15 NOV <span data-edition>2026</span></h2>
-        <p>Viernes 10:00 → Domingo 17:00</p>
-      </article>
+    <section class="lower-zone panel">
+      <div class="lower-zone__photo" aria-hidden="true"></div>
 
-      <article class="panel info-card">
-        <span class="card-code">BUNKER.MODE</span>
-        <h2>ACTIVACIÓN PENDIENTE</h2>
-        <p>Probabilidad estimada de salir de la casa: 0.03%</p>
-      </article>
+      <div class="pig-badge">
+        <img src="assets/pig.svg" alt="Ilustración de un cerdo">
+        <div class="pig-badge__text">
+          <span class="card-code">PIG.PROTOCOL</span>
+          <strong>CERDO AUTORIZADO</strong>
+          <small>Coña interna oficialmente desplegada.</small>
+        </div>
+      </div>
 
-      <article class="panel info-card status-card">
-        <span class="card-code">SYSTEM.STATUS</span>
-        <h2 id="dynamic-status">SINCRONIZANDO PRIMOS…</h2>
-        <p id="dynamic-substatus">Preparando entorno multijugador.</p>
-      </article>
-    </section>
+      <section class="info-grid">
+        <article class="info-card">
+          <span class="card-code">CALENDAR.NODE</span>
+          <h2 id="event-date-range">CARGANDO…</h2>
+          <p id="event-schedule">Consultando configuración.</p>
+        </article>
 
-    <section class="panel modules">
-      <div class="module"><span class="module-icon">🎮</span><span>VIDEOJUEGOS</span><small>consolas listas para despliegue</small></div>
-      <div class="module"><span class="module-icon">🏊</span><span>PISCINA</span><small>subsistema acuático interior</small></div>
-      <div class="module"><span class="module-icon">🍽️</span><span>COMIDA</span><small>aprovisionamiento prioritario</small></div>
-      <div class="module"><span class="module-icon">💬</span><span>CHARLAS</span><small>profundas, cotidianas y absurdas</small></div>
+        <article class="info-card">
+          <span class="card-code">BUNKER.MODE</span>
+          <h2>ACTIVACIÓN PENDIENTE</h2>
+          <p>Probabilidad estimada de salir de la casa: 0.03%</p>
+        </article>
+
+        <article class="info-card status-card">
+          <span class="card-code">SYSTEM.STATUS</span>
+          <h2 id="dynamic-status">SINCRONIZANDO PRIMOS…</h2>
+          <p id="dynamic-substatus">Preparando entorno multijugador.</p>
+        </article>
+      </section>
+
+      <section class="modules">
+        <div class="module"><span class="module-icon">🎮</span><span>VIDEOJUEGOS</span><small>consolas listas para despliegue</small></div>
+        <div class="module"><span class="module-icon">🏊</span><span>PISCINA</span><small>subsistema acuático interior</small></div>
+        <div class="module"><span class="module-icon">🍽️</span><span>COMIDA</span><small>aprovisionamiento prioritario</small></div>
+        <div class="module"><span class="module-icon">💬</span><span>CHARLAS</span><small>profundas, cotidianas y absurdas</small></div>
+      </section>
     </section>
 
     <footer>
@@ -117,6 +132,8 @@
     </footer>
   </main>
 
+  <!-- config.js debe cargarse antes que app.js -->
+  <script src="config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

@@ -2,45 +2,78 @@
 
 Cuenta atrás estática para el Finde de Primos.
 
-## Estructura
+## Arquitectura v3
 
-- `index.html` — contenido de la página
-- `styles.css` — diseño visual
-- `app.js` — fechas, contador, estados y barra de progreso
-- `assets/salon.jpg` — foto de fondo
-- `assets/favicon.svg` — icono de la pestaña
+La web separa completamente **configuración**, **lógica**, **diseño** y **contenido HTML**:
 
-## Fechas actuales
+- `config.js` — ÚNICO archivo que debería ser necesario editar cada año.
+- `app.js` — lógica del contador, estados, fechas derivadas y barra de progreso.
+- `index.html` — estructura de la página, sin fechas de una edición concreta.
+- `styles.css` — diseño visual.
+- `assets/` — imágenes e iconos.
 
-- Inicio: 13/11/2026 a las 10:00
-- Fin: 15/11/2026 a las 17:00
+## Configuración actual
 
-## Cambiar al año siguiente
-
-Edita únicamente el bloque `EVENT` al principio de `app.js`:
+Toda la información dependiente de fechas está aquí:
 
 ```js
-const EVENT = {
-  name: "Finde de Primos",
-  edition: 2027,
-  start: "2027-11-12T10:00:00+01:00",
-  end: "2027-11-14T17:00:00+01:00",
-  progressStart: "2026-11-15T17:00:00+01:00"
+const FINDE_CONFIG = {
+  edition: 2026,
+
+  previousEnd: "2025-11-16T17:00:00+01:00",
+  start:       "2026-11-13T10:00:00+01:00",
+  end:         "2026-11-15T17:00:00+01:00"
 };
 ```
 
-`progressStart` debería ser el final de la edición anterior para que la barra mida el avance exacto entre un Finde de Primos y el siguiente.
+### Qué significa cada campo
 
-## Publicar con GitHub Pages
+- `edition`: edición que se mostrará en la web.
+- `previousEnd`: final del Finde de Primos anterior. Se usa como 0% de la barra de progreso.
+- `start`: momento exacto en el que empieza la próxima edición.
+- `end`: momento exacto en el que termina.
 
-1. Sube todos estos archivos manteniendo la estructura de carpetas.
-2. En el repositorio: **Settings → Pages**.
-3. En **Build and deployment**:
-   - Source: `Deploy from a branch`
-   - Branch: `main`
-   - Folder: `/ (root)`
-4. Guarda los cambios.
+## Actualizar la web para 2027
 
-Para la organización `bensupe` y el repositorio `finde-primos`, la URL será:
+Cuando tengáis las fechas de 2027:
 
-`https://bensupe.github.io/finde-primos/`
+1. Abre `config.js`.
+2. Cambia `edition`.
+3. Pon en `previousEnd` el final de la edición 2026.
+4. Cambia `start`.
+5. Cambia `end`.
+6. Haz commit.
+
+No hace falta modificar `index.html`, `app.js` ni `styles.css`.
+
+Ejemplo:
+
+```js
+const FINDE_CONFIG = {
+  edition: 2027,
+
+  previousEnd: "2026-11-15T17:00:00+01:00",
+  start:       "2027-11-12T10:00:00+01:00",
+  end:         "2027-11-14T17:00:00+01:00"
+};
+```
+
+## Datos que se generan automáticamente
+
+A partir de `config.js`, `app.js` calcula y muestra:
+
+- año/edición;
+- rango de fechas;
+- día de la semana;
+- horas de inicio y final;
+- título de la pestaña;
+- cuenta atrás;
+- textos antes/durante/después del evento;
+- origen y destino de la barra;
+- porcentaje transcurrido entre una edición y la siguiente.
+
+También comprueba que se cumpla:
+
+`previousEnd < start < end`
+
+Si las fechas son inválidas, la web muestra un error de configuración y también lo registra en la consola del navegador.
