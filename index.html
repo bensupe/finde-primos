@@ -6,8 +6,9 @@
   <meta name="theme-color" content="#0a0d0f">
   <meta name="description" content="Cuenta atrás oficial para el Finde de Primos.">
   <title>Finde de Primos</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+
+  <link rel="icon" href="assets/favicon.svg?v=4" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 
 <body>
@@ -21,6 +22,7 @@
         <span>COUSINS WEEKEND</span>
         <span class="muted">// BUILD <span data-edition></span></span>
       </div>
+
       <div class="system-status">
         <span class="status-dot"></span>
         <span id="top-status">INICIALIZANDO…</span>
@@ -28,102 +30,118 @@
     </header>
 
     <section class="hero panel">
-      <div class="eyebrow">PRÓXIMA SESIÓN</div>
-      <h1>FINDE DE PRIMOS</h1>
+      <div class="hero-copy">
+        <div class="eyebrow">PRÓXIMA SESIÓN</div>
+        <h1>FINDE DE PRIMOS</h1>
 
-      <div class="countdown" aria-label="Cuenta atrás para el Finde de Primos">
-        <div class="time-unit main-unit">
-          <span id="days" class="time-value">--</span>
-          <span class="time-label">DÍAS</span>
-        </div>
+        <div class="hero-main">
+          <div class="countdown-area">
+            <div class="countdown" aria-label="Cuenta atrás para el Finde de Primos">
+              <div class="time-unit main-unit">
+                <span id="days" class="time-value">--</span>
+                <span class="time-label">DÍAS</span>
+              </div>
 
-        <div class="time-separator" aria-hidden="true">/</div>
+              <div class="time-separator" aria-hidden="true">/</div>
 
-        <div class="small-units">
-          <div class="time-unit">
-            <span id="hours" class="time-value">--</span>
-            <span class="time-label">HORAS</span>
+              <div class="small-units">
+                <div class="time-unit">
+                  <span id="hours" class="time-value">--</span>
+                  <span class="time-label">HORAS</span>
+                </div>
+                <span class="colon" aria-hidden="true">:</span>
+                <div class="time-unit">
+                  <span id="minutes" class="time-value">--</span>
+                  <span class="time-label">MIN</span>
+                </div>
+                <span class="colon" aria-hidden="true">:</span>
+                <div class="time-unit">
+                  <span id="seconds" class="time-value">--</span>
+                  <span class="time-label">SEG</span>
+                </div>
+              </div>
+            </div>
+
+            <p id="countdown-sentence" class="countdown-sentence" aria-live="polite">
+              Cargando datos de la próxima sesión…
+            </p>
           </div>
-          <span class="colon" aria-hidden="true">:</span>
-          <div class="time-unit">
-            <span id="minutes" class="time-value">--</span>
-            <span class="time-label">MIN</span>
-          </div>
-          <span class="colon" aria-hidden="true">:</span>
-          <div class="time-unit">
-            <span id="seconds" class="time-value">--</span>
-            <span class="time-label">SEG</span>
+
+          <div class="pig-visual" aria-label="Cerdo con consola, piscina y patatas">
+            <img src="assets/cerdo-consola.png?v=4" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
           </div>
         </div>
-      </div>
 
-      <p id="countdown-sentence" class="countdown-sentence" aria-live="polite">
-        Cargando datos de la próxima sesión…
-      </p>
+        <div class="progress-block">
+          <div class="progress-heading">
+            <span>PROGRESO HACIA EL SIGUIENTE FINDE</span>
+            <strong id="progress-label">--%</strong>
+          </div>
 
-      <div class="progress-block">
-        <div class="progress-heading">
-          <span>PROGRESO HACIA EL SIGUIENTE FINDE</span>
-          <strong id="progress-label">--%</strong>
-        </div>
+          <div
+            class="progress-track"
+            role="progressbar"
+            aria-label="Progreso hacia el siguiente Finde de Primos"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <div id="progress-fill" class="progress-fill"></div>
+            <span class="progress-glow"></span>
+          </div>
 
-        <div
-          class="progress-track"
-          role="progressbar"
-          aria-label="Progreso hacia el siguiente Finde de Primos"
-          aria-valuemin="0"
-          aria-valuemax="100"
-          aria-valuenow="0"
-        >
-          <div id="progress-fill" class="progress-fill"></div>
-          <span class="progress-glow"></span>
-        </div>
-
-        <div class="progress-meta">
-          <span id="progress-origin">FIN EDICIÓN ANTERIOR</span>
-          <span id="progress-destination">PRÓXIMA SESIÓN</span>
+          <div class="progress-meta">
+            <span id="progress-origin">FIN EDICIÓN ANTERIOR</span>
+            <span id="progress-destination">PRÓXIMA SESIÓN</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="lower-zone panel">
-      <div class="lower-zone__photo" aria-hidden="true"></div>
+    <section class="info-grid">
+      <article class="panel info-card">
+        <span class="card-code">CALENDAR.NODE</span>
+        <h2 id="event-date-range">CARGANDO…</h2>
+        <p id="event-schedule">Consultando configuración.</p>
+      </article>
 
-      <div class="pig-badge">
-        <img src="assets/pig.svg" alt="Ilustración de un cerdo">
-        <div class="pig-badge__text">
-          <span class="card-code">PIG.PROTOCOL</span>
-          <strong>CERDO AUTORIZADO</strong>
-          <small>Coña interna oficialmente desplegada.</small>
-        </div>
+      <article class="panel info-card">
+        <span class="card-code">BUNKER.MODE</span>
+        <h2>ACTIVACIÓN PENDIENTE</h2>
+        <p>Probabilidad estimada de salir de la casa: 0.03%</p>
+      </article>
+
+      <article class="panel info-card status-card">
+        <span class="card-code">SYSTEM.STATUS</span>
+        <h2 id="dynamic-status">SINCRONIZANDO PRIMOS…</h2>
+        <p id="dynamic-substatus">Preparando entorno multijugador.</p>
+      </article>
+    </section>
+
+    <section class="panel modules">
+      <div class="module">
+        <span class="module-icon">🎮</span>
+        <span>VIDEOJUEGOS</span>
+        <small>consolas listas para despliegue</small>
       </div>
 
-      <section class="info-grid">
-        <article class="info-card">
-          <span class="card-code">CALENDAR.NODE</span>
-          <h2 id="event-date-range">CARGANDO…</h2>
-          <p id="event-schedule">Consultando configuración.</p>
-        </article>
+      <div class="module">
+        <span class="module-icon">🏊</span>
+        <span>PISCINA</span>
+        <small>subsistema acuático interior</small>
+      </div>
 
-        <article class="info-card">
-          <span class="card-code">BUNKER.MODE</span>
-          <h2>ACTIVACIÓN PENDIENTE</h2>
-          <p>Probabilidad estimada de salir de la casa: 0.03%</p>
-        </article>
+      <div class="module">
+        <span class="module-icon">🍽️</span>
+        <span>COMIDA</span>
+        <small>aprovisionamiento prioritario</small>
+      </div>
 
-        <article class="info-card status-card">
-          <span class="card-code">SYSTEM.STATUS</span>
-          <h2 id="dynamic-status">SINCRONIZANDO PRIMOS…</h2>
-          <p id="dynamic-substatus">Preparando entorno multijugador.</p>
-        </article>
-      </section>
-
-      <section class="modules">
-        <div class="module"><span class="module-icon">🎮</span><span>VIDEOJUEGOS</span><small>consolas listas para despliegue</small></div>
-        <div class="module"><span class="module-icon">🏊</span><span>PISCINA</span><small>subsistema acuático interior</small></div>
-        <div class="module"><span class="module-icon">🍽️</span><span>COMIDA</span><small>aprovisionamiento prioritario</small></div>
-        <div class="module"><span class="module-icon">💬</span><span>CHARLAS</span><small>profundas, cotidianas y absurdas</small></div>
-      </section>
+      <div class="module">
+        <span class="module-icon">💬</span>
+        <span>CHARLAS</span>
+        <small>profundas, cotidianas y absurdas</small>
+      </div>
     </section>
 
     <footer>
@@ -132,8 +150,11 @@
     </footer>
   </main>
 
-  <!-- config.js debe cargarse antes que app.js -->
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+  <!--
+    El parámetro ?v=4 evita que GitHub Pages / navegador reutilicen
+    JavaScript antiguo después de una actualización.
+  -->
+  <script src="config.js?v=4"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

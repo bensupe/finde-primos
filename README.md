@@ -2,9 +2,7 @@
 
 Cuenta atrás estática para el Finde de Primos.
 
-## Arquitectura v3
-
-La web separa completamente **configuración**, **lógica**, **diseño** y **contenido HTML**:
+## Arquitectura
 
 - `config.js` — ÚNICO archivo que debería ser necesario editar cada año.
 - `app.js` — lógica del contador, estados, fechas derivadas y barra de progreso.
@@ -12,9 +10,19 @@ La web separa completamente **configuración**, **lógica**, **diseño** y **con
 - `styles.css` — diseño visual.
 - `assets/` — imágenes e iconos.
 
-## Configuración actual
+## Cambios v4
 
-Toda la información dependiente de fechas está aquí:
+- Foto real del salón como fondo general.
+- Paneles algo más transparentes.
+- Cuenta atrás de mayor tamaño.
+- Los días se muestran sin ceros a la izquierda (`97`, no `097`).
+- Nuevo cerdo integrado a la derecha de la cuenta atrás.
+- Eliminado el antiguo `pig.svg`.
+- Los recursos se cargan con `?v=4` para evitar que el navegador use archivos viejos en caché.
+
+## Configuración anual
+
+Solo hay que editar `config.js`:
 
 ```js
 const FINDE_CONFIG = {
@@ -26,54 +34,22 @@ const FINDE_CONFIG = {
 };
 ```
 
-### Qué significa cada campo
+### Campos
 
-- `edition`: edición que se mostrará en la web.
-- `previousEnd`: final del Finde de Primos anterior. Se usa como 0% de la barra de progreso.
-- `start`: momento exacto en el que empieza la próxima edición.
-- `end`: momento exacto en el que termina.
+- `edition`: edición mostrada.
+- `previousEnd`: final de la edición anterior; marca el 0% de la barra.
+- `start`: inicio de la próxima edición.
+- `end`: final de la próxima edición.
 
-## Actualizar la web para 2027
+La web genera automáticamente el rango de fechas, los días de la semana, las horas,
+el título de la pestaña, la cuenta atrás, el porcentaje y los estados.
 
-Cuando tengáis las fechas de 2027:
+## Actualización anual
 
-1. Abre `config.js`.
-2. Cambia `edition`.
-3. Pon en `previousEnd` el final de la edición 2026.
-4. Cambia `start`.
-5. Cambia `end`.
-6. Haz commit.
+Cuando tengáis las fechas del siguiente año:
 
-No hace falta modificar `index.html`, `app.js` ni `styles.css`.
+1. Edita `config.js`.
+2. Cambia `edition`, `previousEnd`, `start` y `end`.
+3. Haz commit.
 
-Ejemplo:
-
-```js
-const FINDE_CONFIG = {
-  edition: 2027,
-
-  previousEnd: "2026-11-15T17:00:00+01:00",
-  start:       "2027-11-12T10:00:00+01:00",
-  end:         "2027-11-14T17:00:00+01:00"
-};
-```
-
-## Datos que se generan automáticamente
-
-A partir de `config.js`, `app.js` calcula y muestra:
-
-- año/edición;
-- rango de fechas;
-- día de la semana;
-- horas de inicio y final;
-- título de la pestaña;
-- cuenta atrás;
-- textos antes/durante/después del evento;
-- origen y destino de la barra;
-- porcentaje transcurrido entre una edición y la siguiente.
-
-También comprueba que se cumpla:
-
-`previousEnd < start < end`
-
-Si las fechas son inválidas, la web muestra un error de configuración y también lo registra en la consola del navegador.
+No hace falta tocar `index.html`, `app.js` ni `styles.css`.
