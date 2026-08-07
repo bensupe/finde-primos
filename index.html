@@ -7,8 +7,8 @@
   <meta name="description" content="Cuenta atrás oficial para el Finde de Primos.">
   <title>Finde de Primos</title>
 
-  <link rel="icon" href="assets/favicon.svg?v=5" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="icon" href="assets/favicon.svg?v=5.1" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=5.1">
 </head>
 
 <body>
@@ -33,12 +33,18 @@
         <h1>FINDE DE PRIMOS</h1>
 
         <div class="hero-main">
-          <div class="countdown-area">
+          <div class="days-side">
             <div class="days-block" aria-label="Días restantes">
               <span id="days" class="days-value">--</span>
               <span class="days-label">DÍAS</span>
             </div>
+          </div>
 
+          <div class="pig-visual" aria-label="Cerdo con consola, piscina y patatas">
+            <img src="assets/cerdo-consola.png?v=5.1" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
+          </div>
+
+          <div class="hours-side">
             <div class="hours-block" aria-label="Cuenta atrás en horas totales">
               <div class="hours-value-line">
                 <span id="total-hours" class="hours-value">----</span>
@@ -47,22 +53,19 @@
                 <span class="hours-colon">:</span>
                 <span id="seconds" class="hours-value">--</span>
               </div>
+
               <div class="hours-label-line">
                 <span>HORAS</span>
                 <span>MIN</span>
                 <span>SEG</span>
               </div>
             </div>
-
-            <p id="countdown-sentence" class="countdown-sentence" aria-live="polite">
-              Cargando datos de la próxima sesión…
-            </p>
-          </div>
-
-          <div class="pig-visual" aria-label="Cerdo con consola, piscina y patatas">
-            <img src="assets/cerdo-consola.png?v=5" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
           </div>
         </div>
+
+        <p id="countdown-sentence" class="countdown-sentence" aria-live="polite">
+          Cargando datos de la próxima sesión…
+        </p>
 
         <div class="progress-block">
           <div class="progress-heading">
@@ -142,7 +145,7 @@
     </footer>
   </main>
 
-  <script src="config.js?v=5"></script>
-  <script src="app.js?v=5"></script>
+  <script src="config.js?v=5.1"></script>
+  <script src="app.js?v=5.1"></script>
 </body>
 </html>
