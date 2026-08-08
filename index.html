@@ -6,21 +6,16 @@
   <meta name="theme-color" content="#0a0d0f">
   <meta name="description" content="Cuenta atrás oficial para el Finde de Primos.">
   <title>Finde de Primos</title>
-
-  <link rel="icon" href="assets/favicon.svg?v=5.1" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=5.1">
+  <link rel="icon" href="assets/favicon.svg?v=5.2" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=5.2">
 </head>
-
 <body>
   <div class="background" aria-hidden="true"></div>
   <div class="grid-overlay" aria-hidden="true"></div>
 
   <main class="shell">
     <header class="topbar">
-      <div class="brand">
-        <span>FINDE DE PRIMOS <span data-edition></span></span>
-      </div>
-
+      <div class="brand"><span>FINDE DE PRIMOS <span data-edition></span></span></div>
       <div class="system-status">
         <span class="status-dot"></span>
         <span id="top-status">INICIALIZANDO…</span>
@@ -35,30 +30,38 @@
         <div class="hero-main">
           <div class="days-side">
             <div class="days-block" aria-label="Días restantes">
+              <span class="days-kicker">QUEDAN</span>
               <span id="days" class="days-value">--</span>
               <span class="days-label">DÍAS</span>
             </div>
           </div>
 
-          <div class="pig-visual" aria-label="Cerdo con consola, piscina y patatas">
-            <img src="assets/cerdo-consola.png?v=5.1" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
+          <div class="pig-visual">
+            <img src="assets/cerdo-consola.png?v=5.2" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
           </div>
+        </div>
 
-          <div class="hours-side">
-            <div class="hours-block" aria-label="Cuenta atrás en horas totales">
-              <div class="hours-value-line">
-                <span id="total-hours" class="hours-value">----</span>
-                <span class="hours-colon">:</span>
-                <span id="minutes" class="hours-value">--</span>
-                <span class="hours-colon">:</span>
-                <span id="seconds" class="hours-value">--</span>
-              </div>
-
-              <div class="hours-label-line">
-                <span>HORAS</span>
-                <span>MIN</span>
-                <span>SEG</span>
-              </div>
+        <div class="precise-countdown">
+          <span class="precise-intro">Más concretamente… quedan</span>
+          <div class="precise-values">
+            <div class="precise-unit">
+              <span id="detail-days" class="precise-value">--</span>
+              <span class="precise-label">días</span>
+            </div>
+            <span class="precise-separator">:</span>
+            <div class="precise-unit">
+              <span id="detail-hours" class="precise-value">--</span>
+              <span class="precise-label">horas</span>
+            </div>
+            <span class="precise-separator">:</span>
+            <div class="precise-unit">
+              <span id="minutes" class="precise-value">--</span>
+              <span class="precise-label">min</span>
+            </div>
+            <span class="precise-separator">:</span>
+            <div class="precise-unit">
+              <span id="seconds" class="precise-value">--</span>
+              <span class="precise-label">seg</span>
             </div>
           </div>
         </div>
@@ -72,19 +75,10 @@
             <span>PROGRESO HACIA EL SIGUIENTE FINDE</span>
             <strong id="progress-label">--%</strong>
           </div>
-
-          <div
-            class="progress-track"
-            role="progressbar"
-            aria-label="Progreso hacia el siguiente Finde de Primos"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            aria-valuenow="0"
-          >
+          <div class="progress-track" role="progressbar" aria-label="Progreso hacia el siguiente Finde de Primos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
             <div id="progress-fill" class="progress-fill"></div>
             <span class="progress-glow"></span>
           </div>
-
           <div class="progress-meta">
             <span id="progress-origin">FIN EDICIÓN ANTERIOR</span>
             <span id="progress-destination">PRÓXIMA SESIÓN</span>
@@ -99,13 +93,11 @@
         <h2 id="event-date-range">CARGANDO…</h2>
         <p id="event-schedule">Consultando configuración.</p>
       </article>
-
       <article class="panel info-card">
         <span class="card-title">MODO BÚNKER</span>
         <h2>ACTIVACIÓN PENDIENTE</h2>
         <p>Probabilidad estimada de salir de la casa: 0.03%</p>
       </article>
-
       <article class="panel info-card status-card">
         <span class="card-title">ESTADO</span>
         <h2 id="dynamic-status">SINCRONIZANDO PRIMOS…</h2>
@@ -114,29 +106,10 @@
     </section>
 
     <section class="panel modules">
-      <div class="module">
-        <span class="module-icon">🎮</span>
-        <span>VIDEOJUEGOS</span>
-        <small>consolas listas para despliegue</small>
-      </div>
-
-      <div class="module">
-        <span class="module-icon">🏊</span>
-        <span>PISCINA</span>
-        <small>subsistema acuático interior</small>
-      </div>
-
-      <div class="module">
-        <span class="module-icon">🍽️</span>
-        <span>COMIDA</span>
-        <small>aprovisionamiento prioritario</small>
-      </div>
-
-      <div class="module">
-        <span class="module-icon">💬</span>
-        <span>CHARLAS</span>
-        <small>profundas, cotidianas y absurdas</small>
-      </div>
+      <div class="module"><span class="module-icon">🎮</span><span>VIDEOJUEGOS</span><small>consolas listas para despliegue</small></div>
+      <div class="module"><span class="module-icon">🏊</span><span>PISCINA</span><small>subsistema acuático interior</small></div>
+      <div class="module"><span class="module-icon">🍽️</span><span>COMIDA</span><small>aprovisionamiento prioritario</small></div>
+      <div class="module"><span class="module-icon">💬</span><span>CHARLAS</span><small>profundas, cotidianas y absurdas</small></div>
     </section>
 
     <footer>
@@ -145,7 +118,7 @@
     </footer>
   </main>
 
-  <script src="config.js?v=5.1"></script>
-  <script src="app.js?v=5.1"></script>
+  <script src="config.js?v=5.2"></script>
+  <script src="app.js?v=5.2"></script>
 </body>
 </html>

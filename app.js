@@ -13,7 +13,8 @@
 
   const els = {
     days: $("#days"),
-    totalHours: $("#total-hours"),
+    detailDays: $("#detail-days"),
+    detailHours: $("#detail-hours"),
     minutes: $("#minutes"),
     seconds: $("#seconds"),
     sentence: $("#countdown-sentence"),
@@ -129,16 +130,16 @@
   function setCountdownValues(ms) {
     const totalSeconds = Math.max(0, Math.floor(ms / 1000));
     const days = Math.floor(totalSeconds / 86400);
-    const totalHours = Math.floor(totalSeconds / 3600);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
 
     els.days.textContent = String(days);
-    els.totalHours.textContent = String(totalHours);
+    els.detailDays.textContent = String(days);\n    els.detailHours.textContent = pad2(hours);
     els.minutes.textContent = pad2(minutes);
     els.seconds.textContent = pad2(seconds);
 
-    return { totalSeconds, days, totalHours, minutes, seconds };
+    return { totalSeconds, days, hours, minutes, seconds };
   }
 
   function beforeEvent(now) {
@@ -146,11 +147,11 @@
     const remaining = start - now;
     const total = setCountdownValues(remaining);
 
-    const hoursRemainder = Math.floor((total.totalSeconds % 86400) / 3600);
+    
 
     els.sentence.textContent =
       `Faltan ${total.days} ${plural(total.days, "día", "días")}, ` +
-      `${hoursRemainder} ${plural(hoursRemainder, "hora", "horas")}, ` +
+      `${total.hours} ${plural(total.hours, "hora", "horas")}, ` +
       `${total.minutes} ${plural(total.minutes, "minuto", "minutos")} y ` +
       `${total.seconds} ${plural(total.seconds, "segundo", "segundos")} para el Finde de Primos.`;
 
@@ -182,12 +183,12 @@
     const eventProgress = Math.min(100, Math.max(0, (elapsed / total) * 100));
     const remaining = setCountdownValues(end - now);
 
-    const hoursRemainder = Math.floor((remaining.totalSeconds % 86400) / 3600);
+    
 
     els.sentence.textContent =
       `FINDE DE PRIMOS ${FINDE_CONFIG.edition} // ONLINE — quedan ` +
       `${remaining.days} ${plural(remaining.days, "día", "días")}, ` +
-      `${hoursRemainder} ${plural(hoursRemainder, "hora", "horas")} y ` +
+      `${remaining.hours} ${plural(remaining.hours, "hora", "horas")} y ` +
       `${remaining.minutes} ${plural(remaining.minutes, "minuto", "minutos")} de modo búnker.`;
 
     els.topStatus.textContent = "MODO BÚNKER // ONLINE";
