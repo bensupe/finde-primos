@@ -145,14 +145,6 @@
     const remaining = start - now;
     const total = setCountdownValues(remaining);
 
-    
-
-    els.sentence.textContent =
-      `Faltan ${total.days} ${plural(total.days, "día", "días")}, ` +
-      `${total.hours} ${plural(total.hours, "hora", "horas")}, ` +
-      `${total.minutes} ${plural(total.minutes, "minuto", "minutos")} y ` +
-      `${total.seconds} ${plural(total.seconds, "segundo", "segundos")} para el Finde de Primos.`;
-
     if (remaining <= 60 * 60 * 1000) {
       els.topStatus.textContent = "CONEXIÓN INMINENTE";
       els.dynamicStatus.textContent = "Casi todo listo";

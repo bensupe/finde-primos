@@ -1,7 +1,8 @@
-# Finde de Primos — v5.3
+# Finde de Primos — v5.3.1
 
-Cambios:
-- el contador detallado se expresa completamente en `HH:MM:SS`, con las horas totales;
-- se elimina la frase redundante de “Faltan X días…”;
-- nuevos textos para Videojuegos, Piscina, Comida y Charlas;
-- se mantiene `config.js` como única fuente de fechas.
+Correcciones:
+- el contador vuelve a actualizarse cada segundo;
+- el porcentaje de progreso vuelve a mostrarse;
+- añadido el título `ACTIVIDADES` encima de Videojuegos, Piscina, Comida y Charlas.
+
+La causa del fallo era una referencia JavaScript antigua a una frase que ya habíamos eliminado del HTML.
