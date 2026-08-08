@@ -135,7 +135,8 @@
     const seconds = totalSeconds % 60;
 
     els.days.textContent = String(days);
-    els.detailDays.textContent = String(days);\n    els.detailHours.textContent = pad2(hours);
+    els.detailDays.textContent = String(days);
+    els.detailHours.textContent = pad2(hours);
     els.minutes.textContent = pad2(minutes);
     els.seconds.textContent = pad2(seconds);
 
