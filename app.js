@@ -13,11 +13,9 @@
 
   const els = {
     days: $("#days"),
-    detailDays: $("#detail-days"),
-    detailHours: $("#detail-hours"),
+    totalHours: $("#total-hours"),
     minutes: $("#minutes"),
     seconds: $("#seconds"),
-    sentence: $("#countdown-sentence"),
     progressFill: $("#progress-fill"),
     progressLabel: $("#progress-label"),
     progressTrack: $(".progress-track"),
@@ -36,7 +34,6 @@
     els.topStatus.textContent = "CONFIG ERROR";
     els.dynamicStatus.textContent = "ERROR DE CONFIGURACIÓN";
     els.dynamicSubstatus.textContent = message;
-    els.sentence.textContent = "Revisa config.js.";
     document.body.classList.add("is-complete");
   }
 
@@ -131,16 +128,16 @@
     const totalSeconds = Math.max(0, Math.floor(ms / 1000));
     const days = Math.floor(totalSeconds / 86400);
     const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const totalHours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
 
     els.days.textContent = String(days);
-    els.detailDays.textContent = String(days);
-    els.detailHours.textContent = pad2(hours);
+    els.totalHours.textContent = String(totalHours);
     els.minutes.textContent = pad2(minutes);
     els.seconds.textContent = pad2(seconds);
 
-    return { totalSeconds, days, hours, minutes, seconds };
+    return { totalSeconds, days, hours, totalHours, minutes, seconds };
   }
 
   function beforeEvent(now) {
@@ -184,14 +181,6 @@
     const eventProgress = Math.min(100, Math.max(0, (elapsed / total) * 100));
     const remaining = setCountdownValues(end - now);
 
-    
-
-    els.sentence.textContent =
-      `FINDE DE PRIMOS ${FINDE_CONFIG.edition} // ONLINE — quedan ` +
-      `${remaining.days} ${plural(remaining.days, "día", "días")}, ` +
-      `${remaining.hours} ${plural(remaining.hours, "hora", "horas")} y ` +
-      `${remaining.minutes} ${plural(remaining.minutes, "minuto", "minutos")} de modo búnker.`;
-
     els.topStatus.textContent = "MODO BÚNKER // ONLINE";
     els.dynamicStatus.textContent = "Finde en curso";
     els.dynamicSubstatus.textContent =
@@ -203,8 +192,6 @@
     document.body.classList.remove("is-live");
 
     setCountdownValues(0);
-    els.sentence.textContent =
-      `FINDE DE PRIMOS ${FINDE_CONFIG.edition} // COMPLETED ✓`;
 
     els.topStatus.textContent = "SESSION COMPLETED";
     els.dynamicStatus.textContent = "Finde completado";

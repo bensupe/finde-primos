@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0a0d0f">
   <meta name="description" content="Cuenta atrás oficial para el Finde de Primos.">
   <title>Finde de Primos</title>
-  <link rel="icon" href="assets/favicon.svg?v=5.2.1" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=5.2.1">
+  <link rel="icon" href="assets/favicon.svg?v=5.3" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=5.3">
 </head>
 <body>
   <div class="background" aria-hidden="true"></div>
@@ -37,20 +37,15 @@
           </div>
 
           <div class="pig-visual">
-            <img src="assets/cerdo-consola.png?v=5.2.1" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
+            <img src="assets/cerdo-consola.png?v=5.3" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
           </div>
         </div>
 
         <div class="precise-countdown">
           <span class="precise-intro">Más concretamente… quedan</span>
-          <div class="precise-values">
-            <div class="precise-unit">
-              <span id="detail-days" class="precise-value">--</span>
-              <span class="precise-label">días</span>
-            </div>
-            <span class="precise-separator">:</span>
-            <div class="precise-unit">
-              <span id="detail-hours" class="precise-value">--</span>
+          <div class="precise-values" aria-label="Tiempo restante total en horas, minutos y segundos">
+            <div class="precise-unit precise-unit-hours">
+              <span id="total-hours" class="precise-value">----</span>
               <span class="precise-label">horas</span>
             </div>
             <span class="precise-separator">:</span>
@@ -65,10 +60,6 @@
             </div>
           </div>
         </div>
-
-        <p id="countdown-sentence" class="countdown-sentence" aria-live="polite">
-          Cargando datos de la próxima sesión…
-        </p>
 
         <div class="progress-block">
           <div class="progress-heading">
@@ -106,10 +97,10 @@
     </section>
 
     <section class="panel modules">
-      <div class="module"><span class="module-icon">🎮</span><span>VIDEOJUEGOS</span><small>consolas listas para despliegue</small></div>
-      <div class="module"><span class="module-icon">🏊</span><span>PISCINA</span><small>subsistema acuático interior</small></div>
-      <div class="module"><span class="module-icon">🍽️</span><span>COMIDA</span><small>aprovisionamiento prioritario</small></div>
-      <div class="module"><span class="module-icon">💬</span><span>CHARLAS</span><small>profundas, cotidianas y absurdas</small></div>
+      <div class="module"><span class="module-icon">🎮</span><span>VIDEOJUEGOS</span><small>El primer juego es el Tetris de las pantallas del comedor.</small></div>
+      <div class="module"><span class="module-icon">🏊</span><span>PISCINA</span><small>Falta sal… estamos dulces…</small></div>
+      <div class="module"><span class="module-icon">🍽️</span><span>COMIDA</span><small>10 kg de queso roquefort en fase de maduración y 1 bote de tomate.</small></div>
+      <div class="module"><span class="module-icon">💬</span><span>CHARLAS</span><small>Aquí solucionamos el mundo.</small></div>
     </section>
 
     <footer>
@@ -118,7 +109,7 @@
     </footer>
   </main>
 
-  <script src="config.js?v=5.2.1"></script>
-  <script src="app.js?v=5.2.1"></script>
+  <script src="config.js?v=5.3"></script>
+  <script src="app.js?v=5.3"></script>
 </body>
 </html>

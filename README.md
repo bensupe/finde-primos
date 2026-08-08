@@ -1,13 +1,7 @@
-# Finde de Primos — v5.2
+# Finde de Primos — v5.3
 
 Cambios:
-- título principal centrado;
-- `QUEDAN X DÍAS` a la izquierda;
-- cerdo a la derecha;
-- contador detallado debajo con días, horas, minutos y segundos;
-- tarjetas inferiores con tipografía mayor;
-- `config.js` sigue siendo el único archivo de fechas.
-
-
-## v5.2.1
-Corrección de un error de sintaxis en `app.js` que impedía ejecutar el contador.
+- el contador detallado se expresa completamente en `HH:MM:SS`, con las horas totales;
+- se elimina la frase redundante de “Faltan X días…”;
+- nuevos textos para Videojuegos, Piscina, Comida y Charlas;
+- se mantiene `config.js` como única fuente de fechas.
