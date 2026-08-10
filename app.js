@@ -155,11 +155,11 @@
       els.dynamicSubstatus.textContent = "Preparad las consolas. El modo búnker está a punto de activarse.";
     } else if (remaining <= 7 * 24 * 60 * 60 * 1000) {
       els.topStatus.textContent = "ÚLTIMA SEMANA";
-      els.dynamicStatus.textContent = "Sincronizando primos…";
+      els.dynamicStatus.textContent = "SINCRONIZANDO PRIMOS…";
       els.dynamicSubstatus.textContent = "Provisionando comida, piscina y entorno multijugador.";
     } else {
       els.topStatus.textContent = "EVENTO PROGRAMADO";
-      els.dynamicStatus.textContent = "Sincronizando primos…";
+      els.dynamicStatus.textContent = "SINCRONIZANDO PRIMOS…";
       els.dynamicSubstatus.textContent = "Preparando entorno multijugador.";
     }
   }
