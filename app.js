@@ -230,6 +230,45 @@
     updateLocalClock(now);
   }
 
+
+  function setupFoodMenuModal() {
+    const openButton = $("#open-food-menu");
+    const modal = $("#food-menu-modal");
+    const closeButton = $("#close-food-menu");
+
+    if (!openButton || !modal || !closeButton) return;
+
+    let lastFocusedElement = null;
+
+    const openModal = () => {
+      lastFocusedElement = document.activeElement;
+      modal.hidden = false;
+      document.body.classList.add("modal-open");
+      closeButton.focus();
+    };
+
+    const closeModal = () => {
+      modal.hidden = true;
+      document.body.classList.remove("modal-open");
+      if (lastFocusedElement) lastFocusedElement.focus();
+    };
+
+    openButton.addEventListener("click", openModal);
+    closeButton.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !modal.hidden) {
+        closeModal();
+      }
+    });
+  }
+
+  setupFoodMenuModal();
+
   updateStaticEventData();
   tick();
   setInterval(tick, 1000);
