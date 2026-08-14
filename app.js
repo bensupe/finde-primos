@@ -22,7 +22,8 @@
     progressOrigin: $("#progress-origin"),
     progressDestination: $("#progress-destination"),
     milestones: $$(".milestone"),
-    milestoneMobileList: $("#milestone-mobile-list"),
+    milestoneMobileActive: $("#milestone-mobile-active"),
+    milestoneMobileTitle: $("#milestone-mobile-title"),
     topStatus: $("#top-status"),
     dynamicStatus: $("#dynamic-status"),
     dynamicSubstatus: $("#dynamic-substatus"),
@@ -226,15 +227,17 @@
       currentMilestone.milestone.classList.add("is-current");
     }
 
-    if (els.milestoneMobileList) {
-      els.milestoneMobileList.innerHTML = currentMilestone ? `
-        <div class="milestone-mobile-item">
-          <span>${currentMilestone.threshold}%</span>
-          <div>
-            <strong>${currentMilestone.title}</strong>
-          </div>
-        </div>
-      ` : "";
+    if (els.milestoneMobileActive && els.milestoneMobileTitle) {
+      if (currentMilestone) {
+        els.milestoneMobileActive.hidden = false;
+        els.milestoneMobileTitle.textContent = currentMilestone.title;
+        els.milestoneMobileActive.style.setProperty("--milestone-mobile-position", `${currentMilestone.threshold}%`);
+        els.milestoneMobileActive.classList.toggle("is-edge-right", currentMilestone.threshold >= 100);
+      } else {
+        els.milestoneMobileActive.hidden = true;
+        els.milestoneMobileTitle.textContent = "";
+        els.milestoneMobileActive.classList.remove("is-edge-right");
+      }
     }
   }
 

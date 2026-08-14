@@ -8,7 +8,7 @@
 }
 *{box-sizing:border-box} html{min-height:100%;background:var(--bg)}
 body{margin:0;min-height:100vh;color:var(--text);font-family:var(--sans);overflow-x:hidden}
-.background{position:fixed;inset:0;z-index:-3;background:linear-gradient(180deg,rgba(3,5,5,.34),rgba(3,5,5,.58)),url("assets/salon.jpg?rev=launch-04") center/cover no-repeat;transform:scale(1.012);filter:saturate(.82) contrast(1.04)}
+.background{position:fixed;inset:0;z-index:-3;background:linear-gradient(180deg,rgba(3,5,5,.34),rgba(3,5,5,.58)),url("assets/salon.jpg?rev=launch-05") center/cover no-repeat;transform:scale(1.012);filter:saturate(.82) contrast(1.04)}
 .grid-overlay{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(190,226,207,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(190,226,207,.035) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black 0%,rgba(0,0,0,.68) 72%,transparent 100%)}
 .shell{width:min(1240px,calc(100% - 36px));margin:0 auto;padding:28px 0 24px}
 .topbar,footer{display:flex;align-items:center;justify-content:space-between;gap:18px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
@@ -294,38 +294,6 @@ body.modal-open{
   opacity:1;
   visibility:visible;
 }
-.milestone-mobile-list{display:none}
-
-@media(max-width:720px){
-  .progress-timeline{padding-bottom:22px}
-  .milestone-text{display:none}
-  .milestone-mobile-list{
-    display:grid;
-    gap:8px;
-    margin:4px 0 14px;
-  }
-  .milestone-mobile-item{
-    display:grid;
-    grid-template-columns:42px 1fr;
-    gap:10px;
-    align-items:start;
-    padding:9px 0;
-    border-top:1px solid rgba(195,232,211,.10);
-  }
-  .milestone-mobile-item>span{
-    color:var(--accent);
-    font-family:var(--mono);
-    font-size:12px;
-    font-weight:700;
-  }
-  .milestone-mobile-item strong{
-    display:block;
-    color:var(--accent-strong);
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-  }
-}
 
 
 /* Solo el último hito alcanzado mantiene el texto ampliado */
@@ -353,5 +321,70 @@ body.modal-open{
 @media(max-width:720px){
   .milestone-mobile-item{
     align-items:center;
+  }
+}
+
+
+/* Móvil: texto del hito anclado visualmente al punto actual */
+.milestone-mobile-active{
+  display:none;
+}
+
+@media(max-width:720px){
+  .progress-timeline{
+    padding-bottom:0;
+  }
+
+  .milestone-text{
+    display:none;
+  }
+
+  .milestone-mobile-active{
+    position:relative;
+    display:block;
+    min-height:42px;
+    margin:8px 0 14px;
+  }
+
+  .milestone-mobile-active[hidden]{
+    display:none;
+  }
+
+  .milestone-mobile-active::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:var(--milestone-mobile-position);
+    width:1px;
+    height:12px;
+    transform:translateX(-50%);
+    background:rgba(195,232,211,.55);
+  }
+
+  .milestone-mobile-title,
+  #milestone-mobile-title{
+    position:absolute;
+    top:16px;
+    left:var(--milestone-mobile-position);
+    transform:translateX(-50%);
+    color:var(--accent-strong);
+    font-size:11px;
+    font-weight:700;
+    line-height:1.25;
+    letter-spacing:.045em;
+    text-transform:uppercase;
+    text-align:center;
+    white-space:nowrap;
+  }
+
+  .milestone-mobile-active.is-edge-right #milestone-mobile-title{
+    left:auto;
+    right:0;
+    transform:none;
+    text-align:right;
+  }
+
+  .milestone-mobile-active.is-edge-right::before{
+    left:100%;
   }
 }
