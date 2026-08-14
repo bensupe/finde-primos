@@ -212,24 +212,31 @@
       const reached = percentage >= threshold;
 
       milestone.classList.toggle("is-achieved", reached);
+      milestone.classList.remove("is-current");
 
       if (reached) {
         const title = milestone.querySelector("strong")?.textContent ?? "";
         const description = milestone.querySelector(".milestone-text span")?.textContent ?? "";
-        achieved.push({ threshold, title, description });
+        achieved.push({ threshold, title, description, milestone });
       }
     });
 
+    const currentMilestone = achieved.at(-1);
+
+    if (currentMilestone) {
+      currentMilestone.milestone.classList.add("is-current");
+    }
+
     if (els.milestoneMobileList) {
-      els.milestoneMobileList.innerHTML = achieved.map(({ threshold, title, description }) => `
+      els.milestoneMobileList.innerHTML = currentMilestone ? `
         <div class="milestone-mobile-item">
-          <span>${threshold}%</span>
+          <span>${currentMilestone.threshold}%</span>
           <div>
-            <strong>${title}</strong>
-            <small>${description}</small>
+            <strong>${currentMilestone.title}</strong>
+            <small>${currentMilestone.description}</small>
           </div>
         </div>
-      `).join("");
+      ` : "";
     }
   }
 
