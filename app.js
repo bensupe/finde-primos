@@ -216,8 +216,7 @@
 
       if (reached) {
         const title = milestone.querySelector("strong")?.textContent ?? "";
-        const description = milestone.querySelector(".milestone-text span")?.textContent ?? "";
-        achieved.push({ threshold, title, description, milestone });
+        achieved.push({ threshold, title, milestone });
       }
     });
 
@@ -233,7 +232,6 @@
           <span>${currentMilestone.threshold}%</span>
           <div>
             <strong>${currentMilestone.title}</strong>
-            <small>${currentMilestone.description}</small>
           </div>
         </div>
       ` : "";

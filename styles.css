@@ -8,7 +8,7 @@
 }
 *{box-sizing:border-box} html{min-height:100%;background:var(--bg)}
 body{margin:0;min-height:100vh;color:var(--text);font-family:var(--sans);overflow-x:hidden}
-.background{position:fixed;inset:0;z-index:-3;background:linear-gradient(180deg,rgba(3,5,5,.34),rgba(3,5,5,.58)),url("assets/salon.jpg?rev=launch-03") center/cover no-repeat;transform:scale(1.012);filter:saturate(.82) contrast(1.04)}
+.background{position:fixed;inset:0;z-index:-3;background:linear-gradient(180deg,rgba(3,5,5,.34),rgba(3,5,5,.58)),url("assets/salon.jpg?rev=launch-04") center/cover no-repeat;transform:scale(1.012);filter:saturate(.82) contrast(1.04)}
 .grid-overlay{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(190,226,207,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(190,226,207,.035) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black 0%,rgba(0,0,0,.68) 72%,transparent 100%)}
 .shell{width:min(1240px,calc(100% - 36px));margin:0 auto;padding:28px 0 24px}
 .topbar,footer{display:flex;align-items:center;justify-content:space-between;gap:18px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
@@ -279,13 +279,6 @@ body.modal-open{
   text-transform:uppercase;
   letter-spacing:.045em;
 }
-.milestone-text span{
-  display:block;
-  margin-top:5px;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.35;
-}
 .milestone-last .milestone-text{
   left:auto;
   right:-4px;
@@ -332,13 +325,6 @@ body.modal-open{
     text-transform:uppercase;
     letter-spacing:.04em;
   }
-  .milestone-mobile-item small{
-    display:block;
-    margin-top:3px;
-    color:var(--muted);
-    font-size:10px;
-    line-height:1.35;
-  }
 }
 
 
@@ -351,4 +337,21 @@ body.modal-open{
 
 .milestone.is-current .milestone-dot{
   transform:translate(-50%,-50%) scale(1.08);
+}
+
+
+/* Hitos: solo título, sin descripción secundaria */
+.milestone-text{
+  top:20px;
+  width:190px;
+}
+
+.milestone-text strong{
+  line-height:1.35;
+}
+
+@media(max-width:720px){
+  .milestone-mobile-item{
+    align-items:center;
+  }
 }
