@@ -21,6 +21,8 @@
     progressTrack: $(".progress-track"),
     progressOrigin: $("#progress-origin"),
     progressDestination: $("#progress-destination"),
+    milestones: $$(".milestone"),
+    milestoneMobileList: $("#milestone-mobile-list"),
     topStatus: $("#top-status"),
     dynamicStatus: $("#dynamic-status"),
     dynamicSubstatus: $("#dynamic-substatus"),
@@ -202,6 +204,33 @@
     els.progressFill.style.width = `${percentage}%`;
     els.progressLabel.textContent = `${percentage.toFixed(1)}%`;
     els.progressTrack.setAttribute("aria-valuenow", percentage.toFixed(1));
+
+    const achieved = [];
+
+    els.milestones.forEach((milestone) => {
+      const threshold = Number(milestone.dataset.threshold);
+      const reached = percentage >= threshold;
+
+      milestone.classList.toggle("is-achieved", reached);
+
+      if (reached) {
+        const title = milestone.querySelector("strong")?.textContent ?? "";
+        const description = milestone.querySelector(".milestone-text span")?.textContent ?? "";
+        achieved.push({ threshold, title, description });
+      }
+    });
+
+    if (els.milestoneMobileList) {
+      els.milestoneMobileList.innerHTML = achieved.map(({ threshold, title, description }) => `
+        <div class="milestone-mobile-item">
+          <span>${threshold}%</span>
+          <div>
+            <strong>${title}</strong>
+            <small>${description}</small>
+          </div>
+        </div>
+      `).join("");
+    }
   }
 
   function updateLocalClock(now) {

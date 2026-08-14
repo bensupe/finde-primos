@@ -8,7 +8,7 @@
 }
 *{box-sizing:border-box} html{min-height:100%;background:var(--bg)}
 body{margin:0;min-height:100vh;color:var(--text);font-family:var(--sans);overflow-x:hidden}
-.background{position:fixed;inset:0;z-index:-3;background:linear-gradient(180deg,rgba(3,5,5,.34),rgba(3,5,5,.58)),url("assets/salon.jpg?rev=launch-01") center/cover no-repeat;transform:scale(1.012);filter:saturate(.82) contrast(1.04)}
+.background{position:fixed;inset:0;z-index:-3;background:linear-gradient(180deg,rgba(3,5,5,.34),rgba(3,5,5,.58)),url("assets/salon.jpg?rev=launch-02") center/cover no-repeat;transform:scale(1.012);filter:saturate(.82) contrast(1.04)}
 .grid-overlay{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(190,226,207,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(190,226,207,.035) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black 0%,rgba(0,0,0,.68) 72%,transparent 100%)}
 .shell{width:min(1240px,calc(100% - 36px));margin:0 auto;padding:28px 0 24px}
 .topbar,footer{display:flex;align-items:center;justify-content:space-between;gap:18px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
@@ -228,4 +228,115 @@ body.modal-open{
 @media(max-width:720px){
   .menu-days{grid-template-columns:1fr}
   .progress-heading strong{font-size:34px}
+}
+
+
+/* Hitos temporales de la barra de progreso */
+.progress-timeline{
+  position:relative;
+  margin:15px 0 0;
+  padding-bottom:98px;
+}
+.progress-timeline .progress-track{margin:0}
+.milestones{position:absolute;inset:0;pointer-events:none}
+.milestone{
+  position:absolute;
+  top:7px;
+  left:var(--milestone-position);
+  transform:translate(-50%,-50%);
+  width:0;
+  height:0;
+}
+.milestone-dot{
+  position:absolute;
+  left:0;
+  top:0;
+  width:15px;
+  height:15px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.22);
+  background:#555b5d;
+  box-shadow:0 0 0 3px rgba(5,8,9,.82);
+  transition:background .35s ease,border-color .35s ease,box-shadow .35s ease;
+}
+.milestone-text{
+  position:absolute;
+  top:18px;
+  left:50%;
+  width:180px;
+  transform:translateX(-50%);
+  text-align:center;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .3s ease;
+}
+.milestone-text strong{
+  display:block;
+  color:var(--accent-strong);
+  font-size:12px;
+  line-height:1.25;
+  text-transform:uppercase;
+  letter-spacing:.045em;
+}
+.milestone-text span{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.35;
+}
+.milestone-last .milestone-text{
+  left:auto;
+  right:-4px;
+  transform:none;
+  text-align:right;
+}
+.milestone.is-achieved .milestone-dot{
+  background:var(--accent);
+  border-color:var(--accent-strong);
+  box-shadow:0 0 0 3px rgba(5,8,9,.82),0 0 16px rgba(167,228,185,.42);
+}
+.milestone.is-achieved .milestone-text{
+  opacity:1;
+  visibility:visible;
+}
+.milestone-mobile-list{display:none}
+
+@media(max-width:720px){
+  .progress-timeline{padding-bottom:22px}
+  .milestone-text{display:none}
+  .milestone-mobile-list{
+    display:grid;
+    gap:8px;
+    margin:4px 0 14px;
+  }
+  .milestone-mobile-item{
+    display:grid;
+    grid-template-columns:42px 1fr;
+    gap:10px;
+    align-items:start;
+    padding:9px 0;
+    border-top:1px solid rgba(195,232,211,.10);
+  }
+  .milestone-mobile-item>span{
+    color:var(--accent);
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:700;
+  }
+  .milestone-mobile-item strong{
+    display:block;
+    color:var(--accent-strong);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  .milestone-mobile-item small{
+    display:block;
+    margin-top:3px;
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.35;
+  }
 }

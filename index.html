@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0a0d0f">
   <meta name="description" content="Cuenta atrás oficial para el Finde de Primos.">
   <title>Finde de Primos</title>
-  <link rel="icon" href="assets/favicon.svg?rev=launch-01" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?rev=launch-01">
+  <link rel="icon" href="assets/favicon.svg?rev=launch-02" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?rev=launch-02">
 </head>
 <body>
   <div class="background" aria-hidden="true"></div>
@@ -37,7 +37,7 @@
           </div>
 
           <div class="pig-visual">
-            <img src="assets/cerdo-consola.png?rev=launch-01" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
+            <img src="assets/cerdo-consola.png?rev=launch-02" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
           </div>
         </div>
 
@@ -66,10 +66,44 @@
             <span>PROGRESO HACIA EL SIGUIENTE FINDE</span>
             <strong id="progress-label">--%</strong>
           </div>
-          <div class="progress-track" role="progressbar" aria-label="Progreso hacia el siguiente Finde de Primos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-            <div id="progress-fill" class="progress-fill"></div>
-            <span class="progress-glow"></span>
+          <div class="progress-timeline">
+            <div class="progress-track" role="progressbar" aria-label="Progreso hacia el siguiente Finde de Primos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div id="progress-fill" class="progress-fill"></div>
+              <span class="progress-glow"></span>
+            </div>
+
+            <div class="milestones" aria-label="Hitos de progreso">
+              <div class="milestone" data-threshold="25" style="--milestone-position:25%">
+                <span class="milestone-dot" aria-hidden="true"></span>
+                <div class="milestone-text">
+                  <strong>Primer tramo superado</strong>
+                  <span>Has dejado atrás la primera subida. Ya se ve algo de horizonte.</span>
+                </div>
+              </div>
+              <div class="milestone" data-threshold="50" style="--milestone-position:50%">
+                <span class="milestone-dot" aria-hidden="true"></span>
+                <div class="milestone-text">
+                  <strong>Ecuador alcanzado</strong>
+                  <span>Ahora solo queda esperar lo mismo que ya has esperado.</span>
+                </div>
+              </div>
+              <div class="milestone" data-threshold="75" style="--milestone-position:75%">
+                <span class="milestone-dot" aria-hidden="true"></span>
+                <div class="milestone-text">
+                  <strong>Esto está al caer</strong>
+                  <span>Ya empieza a oler a piscina, consola y nutrición discutible.</span>
+                </div>
+              </div>
+              <div class="milestone milestone-last" data-threshold="100" style="--milestone-position:100%">
+                <span class="milestone-dot" aria-hidden="true"></span>
+                <div class="milestone-text">
+                  <strong>Modo búnker activado</strong>
+                  <span>Cuenta atrás completada. El Finde de Primos ya está en curso.</span>
+                </div>
+              </div>
+            </div>
           </div>
+          <div id="milestone-mobile-list" class="milestone-mobile-list" aria-live="polite"></div>
           <div class="progress-meta">
             <span id="progress-origin">FIN EDICIÓN ANTERIOR</span>
             <span id="progress-destination">PRÓXIMA SESIÓN</span>
@@ -99,7 +133,7 @@
     <div class="section-title">ACTIVIDADES</div>
 
     <section class="panel modules">
-      <div class="module"><span class="module-icon">🎮</span><span>VIDEOJUEGOS</span><small>De lo más nuevo a lo más retro… pero el primer juego siempre es: Living Room Screen Tetris.</small></div>
+      <div class="module"><span class="module-icon">🎮</span><span>VIDEOJUEGOS</span><small>De lo más nuevo a lo más retro… pero el primer juego siempre es: Dining Room Screen Tetris.</small></div>
       <div class="module"><span class="module-icon">🏊</span><span>PISCINA</span><small>Falta sal… estamos dulces…</small></div>
       <button class="module module-button" id="open-food-menu" type="button" aria-haspopup="dialog" aria-controls="food-menu-modal">
         <span class="module-icon">🍽️</span>
@@ -154,7 +188,7 @@
     </footer>
   </main>
 
-  <script src="config.js?rev=launch-01"></script>
-  <script src="app.js?rev=launch-01"></script>
+  <script src="config.js?rev=launch-02"></script>
+  <script src="app.js?rev=launch-02"></script>
 </body>
 </html>
