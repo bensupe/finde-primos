@@ -34,7 +34,8 @@
     lockedView: $("#locked-view"),
     infoGrid: $("#info-grid"),
     activitiesTitle: $("#activities-title"),
-    activitiesModules: $("#activities-modules")
+    activitiesModules: $("#activities-modules"),
+    siteFooter: $("#site-footer")
   };
 
   function showConfigError(message) {
@@ -111,6 +112,7 @@
     if (els.infoGrid) els.infoGrid.hidden = true;
     if (els.activitiesTitle) els.activitiesTitle.hidden = true;
     if (els.activitiesModules) els.activitiesModules.hidden = true;
+    if (els.siteFooter) els.siteFooter.hidden = true;
     if (els.lockedView) els.lockedView.hidden = false;
 
     els.topStatus.textContent = "CONSULTA BLOQUEADA";
@@ -125,6 +127,7 @@
     if (els.infoGrid) els.infoGrid.hidden = false;
     if (els.activitiesTitle) els.activitiesTitle.hidden = false;
     if (els.activitiesModules) els.activitiesModules.hidden = false;
+    if (els.siteFooter) els.siteFooter.hidden = false;
     if (els.lockedView) els.lockedView.hidden = true;
   }
 
