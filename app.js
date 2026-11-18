@@ -29,7 +29,12 @@
     dynamicSubstatus: $("#dynamic-substatus"),
     footerClock: $("#footer-clock"),
     eventDateRange: $("#event-date-range"),
-    eventSchedule: $("#event-schedule")
+    eventSchedule: $("#event-schedule"),
+    mainHero: $("#main-hero"),
+    lockedView: $("#locked-view"),
+    infoGrid: $("#info-grid"),
+    activitiesTitle: $("#activities-title"),
+    activitiesModules: $("#activities-modules")
   };
 
   function showConfigError(message) {
@@ -68,6 +73,61 @@
   }
 
   const pad2 = (value) => String(value).padStart(2, "0");
+
+  const MADRID_DATE_FORMATTER = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Madrid",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  });
+
+  const ACCESS_STORAGE_KEY = "finde-primos:last-visit:madrid-date";
+
+  function getMadridDateKey(date) {
+    return MADRID_DATE_FORMATTER.format(date);
+  }
+
+  function hasConsultedToday(now) {
+    try {
+      return localStorage.getItem(ACCESS_STORAGE_KEY) === getMadridDateKey(now);
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function markConsultedToday(now) {
+    try {
+      localStorage.setItem(ACCESS_STORAGE_KEY, getMadridDateKey(now));
+    } catch (error) {
+      // Si el navegador bloquea storage, simplemente seguimos sin restricción persistente.
+    }
+  }
+
+  function showLockedView() {
+    document.body.classList.add("is-locked");
+    document.body.classList.remove("is-live", "is-complete");
+
+    if (els.mainHero) els.mainHero.hidden = true;
+    if (els.infoGrid) els.infoGrid.hidden = true;
+    if (els.activitiesTitle) els.activitiesTitle.hidden = true;
+    if (els.activitiesModules) els.activitiesModules.hidden = true;
+    if (els.lockedView) els.lockedView.hidden = false;
+
+    els.topStatus.textContent = "CONSULTA BLOQUEADA";
+    els.dynamicStatus.textContent = "MODO ANSIOSO DETECTADO";
+    els.dynamicSubstatus.textContent = "Solo se permite una consulta diaria por navegador.";
+  }
+
+  function showMainView() {
+    document.body.classList.remove("is-locked");
+
+    if (els.mainHero) els.mainHero.hidden = false;
+    if (els.infoGrid) els.infoGrid.hidden = false;
+    if (els.activitiesTitle) els.activitiesTitle.hidden = false;
+    if (els.activitiesModules) els.activitiesModules.hidden = false;
+    if (els.lockedView) els.lockedView.hidden = true;
+  }
+
 
   function plural(value, singular, pluralForm) {
     return value === 1 ? singular : pluralForm;
@@ -135,12 +195,21 @@
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
 
+    document.body.classList.remove("is-gozando");
     els.days.textContent = String(days);
     els.totalHours.textContent = String(totalHours);
     els.minutes.textContent = pad2(minutes);
     els.seconds.textContent = pad2(seconds);
 
     return { totalSeconds, days, hours, totalHours, minutes, seconds };
+  }
+
+  function setGozandoState() {
+    document.body.classList.add("is-gozando");
+    els.days.textContent = "GOZANDO";
+    els.totalHours.textContent = "--";
+    els.minutes.textContent = "--";
+    els.seconds.textContent = "--";
   }
 
   function beforeEvent(now) {
@@ -174,10 +243,11 @@
     const elapsed = now - start;
     const total = end - start;
     const eventProgress = Math.min(100, Math.max(0, (elapsed / total) * 100));
-    const remaining = setCountdownValues(end - now);
 
-    els.topStatus.textContent = "MODO BÚNKER // ONLINE";
-    els.dynamicStatus.textContent = "Finde en curso";
+    setGozandoState();
+
+    els.topStatus.textContent = "MODO BÚNKER // GOZANDO";
+    els.dynamicStatus.textContent = "GOZANDO";
     els.dynamicSubstatus.textContent =
       `Sesión activa al ${eventProgress.toFixed(1)}%. No se recomienda salir de la casa.`;
   }
@@ -185,6 +255,7 @@
   function afterEvent() {
     document.body.classList.add("is-complete");
     document.body.classList.remove("is-live");
+    document.body.classList.remove("is-gozando");
 
     setCountdownValues(0);
 
@@ -307,6 +378,18 @@
   setupFoodMenuModal();
 
   updateStaticEventData();
+
+  const now = new Date();
+
+  if (hasConsultedToday(now)) {
+    showLockedView();
+    updateLocalClock(now);
+    setInterval(() => updateLocalClock(new Date()), 1000);
+    return;
+  }
+
+  markConsultedToday(now);
+  showMainView();
   tick();
   setInterval(tick, 1000);
 })();

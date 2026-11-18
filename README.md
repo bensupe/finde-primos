@@ -40,3 +40,11 @@ Al actualizar estos valores, el resto de fechas, textos derivados, cuenta atrás
 La web está preparada para publicarse como sitio estático mediante **GitHub Pages**.
 
 No necesita servidor propio ni base de datos para su funcionamiento actual.
+
+
+## Nota sobre la consulta diaria
+
+La versión actual implementa una **limitación de una consulta al día por navegador/dispositivo**, usando `localStorage` y la fecha de Madrid (`Europe/Madrid`).
+
+> Importante: en GitHub Pages, al ser una web estática sin backend, **no es posible aplicar una limitación real por IP** de forma fiable.  
+> Para un bloqueo auténtico por IP habría que añadir un servicio externo o un pequeño backend (por ejemplo Cloudflare Workers, Netlify Functions, Vercel, etc.).

@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0a0d0f">
   <meta name="description" content="Cuenta atrás oficial para el Finde de Primos.">
   <title>Finde de Primos</title>
-  <link rel="icon" href="assets/favicon.svg?rev=launch-05" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?rev=launch-05">
+  <link rel="icon" href="assets/favicon.svg?rev=20271119" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?rev=20271119">
 </head>
 <body>
   <div class="background" aria-hidden="true"></div>
@@ -22,7 +22,7 @@
       </div>
     </header>
 
-    <section class="hero panel">
+    <section id="main-hero" class="hero panel">
       <div class="hero-copy">
         <div class="eyebrow">PRÓXIMA SESIÓN</div>
         <h1>FINDE DE PRIMOS</h1>
@@ -37,7 +37,7 @@
           </div>
 
           <div class="pig-visual">
-            <img src="assets/cerdo-consola.png?rev=launch-05" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
+            <img src="assets/cerdo-consola.png?rev=20271119" alt="Cerdo con gafas jugando a la consola dentro de una piscina">
           </div>
         </div>
 
@@ -108,7 +108,33 @@
       </div>
     </section>
 
-    <section class="info-grid">
+
+    <section id="locked-view" class="hero panel locked-view" hidden>
+      <div class="hero-copy locked-copy-wrap">
+        <div class="eyebrow">CONSULTA LIMITADA</div>
+        <h1>MODO ANSIOSO DETECTADO</h1>
+
+        <div class="hero-main locked-main">
+          <div class="days-side locked-message-side">
+            <div class="locked-message-box">
+              <span class="days-kicker">TRANQUILO, HOMBRE</span>
+              <p class="locked-message">
+                Te veo demasiado ansioso con el finde de primos… así que hoy no te voy a dejar consultar de nuevo la cuenta atrás.
+              </p>
+              <p class="locked-submessage">
+                Vuelve mañana y tendrás otra consulta disponible.
+              </p>
+            </div>
+          </div>
+
+          <div class="pig-visual locked-visual">
+            <img src="assets/hero-programador.png?rev=20271119" alt="Programador vigilando el panel del Finde de Primos">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="info-grid" class="info-grid">
       <article class="panel info-card">
         <span class="card-title">FECHA</span>
         <h2 id="event-date-range">CARGANDO…</h2>
@@ -126,9 +152,9 @@
       </article>
     </section>
 
-    <div class="section-title">ACTIVIDADES</div>
+    <div id="activities-title" class="section-title">ACTIVIDADES</div>
 
-    <section class="panel modules">
+    <section id="activities-modules" class="panel modules">
       <div class="module"><span class="module-icon">🎮</span><span>VIDEOJUEGOS</span><small>De lo más nuevo a lo más retro… pero el primer juego siempre es: Dining Room Screen Tetris.</small></div>
       <div class="module"><span class="module-icon">🏊</span><span>PISCINA</span><small>Falta sal… estamos dulces…</small></div>
       <button class="module module-button" id="open-food-menu" type="button" aria-haspopup="dialog" aria-controls="food-menu-modal">
@@ -184,7 +210,7 @@
     </footer>
   </main>
 
-  <script src="config.js?rev=launch-05"></script>
-  <script src="app.js?rev=launch-05"></script>
+  <script src="config.js?rev=20271119"></script>
+  <script src="app.js?rev=20271119"></script>
 </body>
 </html>
